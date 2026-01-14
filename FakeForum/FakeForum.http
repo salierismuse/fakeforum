@@ -1,0 +1,6 @@
+@FakeForum_HostAddress = http://localhost:5287
+
+GET {{FakeForum_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
