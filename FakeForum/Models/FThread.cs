@@ -4,7 +4,7 @@ namespace FakeForum.Models
 {
     public class FThread
     {
-        public int ThreadId { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; set; } = string.Empty;
 

@@ -56,13 +56,16 @@ namespace FakeForum.Services
             }
         }
 
-        public async Task<string> LogIn(string username, string password)
+        public async Task<string> LogIn(string email, string password)
         {
-            var user = await _userRepo.GetByUsername(username);
+            var user = await _userRepo.GetByEmail(email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash)) {
                 return null;
             }
             return GenerateJwtToken(user);
         }
+
+
+
     }
 }
