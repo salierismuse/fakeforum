@@ -38,7 +38,7 @@ namespace FakeForum.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<string> CreateUser(string username, string email, string password, string bio)
+        public async Task<string> CreateUser(string username, string email, string password)
         {
             if (await _userRepo.UserExists(username))
                 throw new Exception("Username already taken");
@@ -49,7 +49,6 @@ namespace FakeForum.Services
                     Username = username,
                     Email = email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
-                    Bio = bio
                 };
                 await _userRepo.Create(user);
                 return GenerateJwtToken(user);
@@ -60,7 +59,7 @@ namespace FakeForum.Services
         {
             var user = await _userRepo.GetByEmail(email);
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash)) {
-                return null;
+                throw new Exception("Invalid email or password");
             }
             return GenerateJwtToken(user);
         }

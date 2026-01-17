@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FakeForum.Services;
 using FakeForum.DTOs;
+
+
 namespace FakeForum.Controllers
 {
 
@@ -22,8 +24,7 @@ namespace FakeForum.Controllers
             var token = await _auth.CreateUser(
                 request.Username,
                 request.Email,
-                request.Password,
-                request.Bio
+                request.Password
             );
             if (token == null)
             {
