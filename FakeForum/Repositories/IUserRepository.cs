@@ -13,5 +13,7 @@ namespace FakeForum.Repositories
         Task Create(AppUser user);
         Task Update(AppUser user);
         Task Delete(int id);
+
+
     }
 }
